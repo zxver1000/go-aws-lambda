@@ -2,15 +2,19 @@ package main
 
 import (
 	"fmt"
-
-	"webhook"
+	"log"
+	"webhook/webhook"
 
 	"github.com/annuums/solanum"
+	"github.com/joho/godotenv"
 )
 
 func main(){
-
-	server := *solanum.NewSolanum(5050)
+	env_err := godotenv.Load(".env")
+    if env_err != nil {
+        log.Fatal("Error loading .env file")
+    }
+server := *solanum.NewSolanum(5050)
 
  fmt.Println("hihi")
 
@@ -23,7 +27,5 @@ func main(){
 
  server.AddModule(&webhookModule)
 
-
- server.AddModule(&helloWorldModule)
    server.Run()
 }
