@@ -6,7 +6,6 @@ import (
 	"errors"
 	"fmt"
 	"log"
-	"os"
 	"sync"
 
 	_ "github.com/aws/smithy-go"
@@ -27,8 +26,8 @@ func Lambda_client_getInstance() *AWS_Lambda {
 		once.Do(func() {
 			fmt.Println("[Once] create lambda single instance")
 			cfg, err := config.LoadDefaultConfig(context.TODO(), config.WithSharedCredentialsFiles(
-				[]string{"../env"},
-				), config.WithRegion(os.Getenv("region")))
+				[]string{"../aws_config_file"},
+				), config.WithRegion("ap-northeast-2"))
 			if err != nil {
 				fmt.Println("Couldn't load default configuration. Have you set up your AWS account?")
 				fmt.Println(err)

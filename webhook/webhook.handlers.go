@@ -20,13 +20,13 @@ func NewWebHookHandler() []*solanum.SolaService {
 		Uri:        "/",
 		Method:     http.MethodPatch,
 		Handler:    Update_LambdaHandler,
-		Middleware: nil,
+		Middleware: indexMiddleware,
 	},
 	{
 		Uri:        "/",
 		Method:     http.MethodGet,
 		Handler:    HealthCheckHandler,
-		Middleware: nil,
+		Middleware: indexMiddleware,
 	},
 	}
 }
@@ -36,7 +36,7 @@ func NewWebHookHandler() []*solanum.SolaService {
 func HealthCheckHandler(ctx *gin.Context){
    
 	
-	ctx.JSON(http.StatusOK,gin.H{"code" : http.StatusOK,"content": "Health Check OK."})
+	ctx.JSON(http.StatusOK,gin.H{"code" : http.StatusOK,"content": "Health Check OK OK ."})
 }
 func indexMiddleware(ctx *gin.Context) {
 	log.Println("Hello Index Middleware")

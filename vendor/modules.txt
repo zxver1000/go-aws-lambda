@@ -1,6 +1,13 @@
 # github.com/annuums/solanum v0.0.0-20230922090750-9eb6f80f2cbb
 ## explicit; go 1.20
 github.com/annuums/solanum
+# github.com/aws/aws-lambda-go v1.41.0
+## explicit; go 1.18
+github.com/aws/aws-lambda-go/events
+github.com/aws/aws-lambda-go/lambda
+github.com/aws/aws-lambda-go/lambda/handlertrace
+github.com/aws/aws-lambda-go/lambda/messages
+github.com/aws/aws-lambda-go/lambdacontext
 # github.com/aws/aws-sdk-go-v2 v1.23.1
 ## explicit; go 1.19
 github.com/aws/aws-sdk-go-v2/aws
@@ -103,6 +110,10 @@ github.com/aws/smithy-go/time
 github.com/aws/smithy-go/transport/http
 github.com/aws/smithy-go/transport/http/internal/io
 github.com/aws/smithy-go/waiter
+# github.com/awslabs/aws-lambda-go-api-proxy v0.16.0
+## explicit; go 1.20
+github.com/awslabs/aws-lambda-go-api-proxy/core
+github.com/awslabs/aws-lambda-go-api-proxy/gin
 # github.com/bytedance/sonic v1.9.1
 ## explicit; go 1.15
 github.com/bytedance/sonic
