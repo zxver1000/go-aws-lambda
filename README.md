@@ -3,8 +3,8 @@
 # aws_config_file
 
 ```
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
+aws_access_key_id=
+aws_secret_access_key=
 
 ```
 
