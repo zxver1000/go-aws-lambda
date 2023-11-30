@@ -2,14 +2,18 @@ package webhook
 
 import (
 	"context"
+	"encoding/json"
+	"errors"
 	"fmt"
+	"log"
 	"os"
 	"sync"
 
-	"encoding/json"
+	_ "github.com/aws/smithy-go"
 
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/lambda"
+	"github.com/aws/smithy-go"
 )
 
 type AWS_Lambda struct {
@@ -44,7 +48,7 @@ func Lambda_client_getInstance() *AWS_Lambda {
 
 
 
-func Update_lambda_image(Func_name string,Image_uri string) int64{
+func Update_lambda_image(Func_name string,Image_uri string) (bool,string){
 
 	/* 예외 처리 추가할것 
 	   1. ECR에 이미지가 있는지 확인 -> 없으면  Bad Request
@@ -54,31 +58,34 @@ func Update_lambda_image(Func_name string,Image_uri string) int64{
 	*/
 
 	aws_instance:=Lambda_client_getInstance()
-	fmt.Println(aws_instance)
-//	fun_name:="ko"
+	
+	var oe *smithy.OperationError
 
-//	image:="455883942660.dkr.ecr.ap-northeast-2.amazonaws.com/koko:0.1"
 	update_lambda,err3:=aws_instance.lambdaClient.UpdateFunctionCode(context.TODO(),&lambda.UpdateFunctionCodeInput{
         FunctionName:&Func_name,
 		DryRun:false,
 		ImageUri:&Image_uri,
 	})
 	if err3!=nil{
-		fmt.Printf("error update.: %v\n", err3)
-		return 404
+		log.Println("Lambda Udpate error :",err3)
+		//idx:=strings.Index("StatusCode",err3)
+		//fmt.Println(idx)
+		if errors.As(err3, &oe) {
+			log.Printf("failed to call service: %s, operation: %s, error: %v", oe.Service(), oe.Operation(), oe.Unwrap())
+			ErrorString := fmt.Sprintf("%+v", oe.Unwrap())
+			//idx:=strings.Indexof(ErrorString,"Statuscode")
+			return false,ErrorString
+		}
 	}
-	/*
-	json_lambda, err5 := json.Marshal(update_lambda)
-    if err5 != nil {
-        fmt.Println(err5)
-        return 404
-    }
 	
-	fmt.Println(json_lambda.function_name)
+    jsonUpdate_lambda, err5 := json.Marshal(update_lambda)
+   fmt.Println(err5)
+     
+	fmt.Println(jsonUpdate_lambda)
+	
+	
 
-	*/
-
- return 200
+ return true,"Update Success"
 
 }
 

@@ -16,8 +16,9 @@ func NewWebHookController() (*solanum.SolaController, error) {
 
 func addWebhookHandlers() {
 	WebHookHandler := NewWebHookHandler()
-
+    
 	// anotherHandler := NewHelloWorldHandler()
 	//* ...
-	WebHookController.AddHandler(WebHookHandler)
+	WebHookController.AddHandler(WebHookHandler...)
+	
 }

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"webhook/webhook"
 
@@ -16,16 +15,14 @@ func main(){
     }
 server := *solanum.NewSolanum(5050)
 
- fmt.Println("hihi")
-
  var webhookModule solanum.Module
- webhookUri:="/webhook"
+ webhookUri:="/"
  webhookModule, _ = webhook.NewWebHookModule(
 	 server.GetGinEngine().Group(webhookUri),
 	 webhookUri,
  )
 
  server.AddModule(&webhookModule)
-
+ 
    server.Run()
 }
