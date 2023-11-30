@@ -12,4 +12,4 @@ aws_secret_access_key=
 
 - [https://github.com/aws/aws-sdk-go-v2](https://github.com/aws/aws-sdk-go-v2)
 
--[https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/golang-handler.html] (https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/golang-handler.html)
+- [https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/golang-handler.html](https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/golang-handler.html)
