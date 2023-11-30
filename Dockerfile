@@ -1,9 +1,9 @@
-FROM golang:1.20 as build
+FROM golang:1.21.4 as build
 
 WORKDIR /annuums
 # Copy dependencies list
 # # Build with optional lambda.norpc tag
-COPY src .
+COPY . .
 RUN go build -tags lambda.norpc -o main starter.go
 
 # Copy artifacts to a clean image
