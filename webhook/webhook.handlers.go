@@ -55,6 +55,7 @@ func Update_LambdaHandler(ctx *gin.Context) {
 	/* ADD fucntion
 	   1. Update function options
 	   2. OIDC로 credentials 로그인 하기 찾아보기 https://aws.github.io/aws-sdk-go-v2/docs/configuring-sdk/
+           3. git oidc -> 접근지정자 제한 
 	*/
    	var requestBody UpdateImageRequestBody
 	   if err := ctx.BindJSON(&requestBody); err != nil {
